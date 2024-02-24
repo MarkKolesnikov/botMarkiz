@@ -8,24 +8,30 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
 
-   final BotConfig botConfig;
+   final BotConfig config;
 
    public TelegramBot(BotConfig botConfig) {
-       this.botConfig = botConfig;
+       this.config = botConfig;
    }
     @Override
     public String getBotUsername() {
-        return null;
+        return config.getBotName();
     }
 
     @Override
     public String getBotToken() {
-        return null;
+        return config.getToken();
     }
 
     @Override
     public void onUpdateReceived(Update update) {
+       if(update.hasMessage() && update.getMessage().hasText()) {
+           String messageText = update.getMessage().getText();
 
+           switch (messageText) {
+               case "/start":
+
+           }
+       }
     }
-
 }
