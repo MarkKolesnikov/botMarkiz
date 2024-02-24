@@ -1,6 +1,7 @@
 package com.projectbot.SpringMarkizBot.service;
 
 import com.projectbot.SpringMarkizBot.config.BotConfig;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -25,6 +26,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         return config.getToken();
     }
 
+    @SneakyThrows
     @Override
     public void onUpdateReceived(Update update) {
        if(update.hasMessage() && update.getMessage().hasText()) {
@@ -33,29 +35,24 @@ public class TelegramBot extends TelegramLongPollingBot {
 
            switch (messageText) {
                case "/start":
-                   try {
+
                        startCommandReceived(chatId, update.getMessage().getChat().getFirstName());
-                   } catch (TelegramApiException e) {
-                       throw new RuntimeException(e);
-                   }
+                       break;
                default:
-                   try {
+
                        sendMessage(chatId, "Sorry :( ");
-                   } catch (TelegramApiException e) {
-                       throw new RuntimeException(e);
-                   }
            }
        }
     }
 
-    private void startCommandReceived(long chatId, String name) throws TelegramApiException {
+    private void startCommandReceived(long chatId, String name) {
 
        String answer = "Hi, " + name + ", nice to meet you";
 
        sendMessage(chatId, answer);
     }
 
-    private void sendMessage(Long chatId, String textToSend) throws TelegramApiException {
+    private void sendMessage(Long chatId, String textToSend) {
 
         SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(chatId));
