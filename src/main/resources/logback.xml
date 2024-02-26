@@ -1,6 +1,6 @@
 <configuration>
 
-    <property name="HOME_LOG" value="/var/log/project.io/markiz-tg-bot/app.log"/>
+    <property name="HOME_LOG" value="/var/log/proj3ct.io/tg-simple-bot/app.log"/>
 
     <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${HOME_LOG}</file>
@@ -16,7 +16,7 @@
         </rollingPolicy>
 
         <encoder>
-            <pattern>%d %p %c{1.} [%t] %m%n</pattern>
+            <pattern>%d %p %c{1} [%t] %m%n</pattern>
         </encoder>
     </appender>
 
