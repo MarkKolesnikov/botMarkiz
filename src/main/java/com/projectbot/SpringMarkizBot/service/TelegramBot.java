@@ -52,7 +52,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
                default:
 
-                       sendMessage(chatId, "Я не понимаю твоей команды! ");
+                       sendMessage(chatId, "Я не понимаю человеческий ");
            }
        } else if (update.hasCallbackQuery()) {
            String callbackData = update.getCallbackQuery().getData();
@@ -65,14 +65,14 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     private void helpCommandLine(Long chatId) {
-        String helpText = "/start - начало работы\n/help - команды бота";
+        String helpText = "/start - Начни разговаривать с Кузей\n/help - команды Кузи";
 
         sendMessage(chatId, helpText);
     }
 
     private void startCommandReceived(long chatId, String name) {
 
-       String answer = "Привет, " + name + " , этот бот шаблон для будущих ботов !";
+       String answer = "Мяутствую, " + name + " , почеши мне пузико или иди отсюда !";
        log.info("Replied to user: " + name);
 
        sendMessage(chatId, answer);
