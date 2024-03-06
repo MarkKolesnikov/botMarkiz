@@ -36,11 +36,11 @@ public class TelegramBot extends TelegramLongPollingBot {
     @SneakyThrows
     @Override
     public void onUpdateReceived(Update update) {
-       if(update.hasMessage() && update.getMessage().hasText()) {
+       if(update.hasMessage() && update.getMessage().hasText()) { // данный метод проверяет есть ли в сообщении текст
            String messageText = update.getMessage().getText();
            long chatId = update.getMessage().getChatId();
 
-           switch (messageText) {
+           switch (messageText) { // Введеный текст ,будет сверятся с case и при совпадении будет выполняться команда
                case "/start":
 
                        startCommandReceived(chatId, update.getMessage().getChat().getFirstName());
@@ -70,7 +70,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         sendMessage(chatId, helpText);
     }
 
-    private void startCommandReceived(long chatId, String name) {
+    private void startCommandReceived(long chatId, String name) { // данный метод отвечает за команду /start
 
        String answer = "Мяутствую, " + name + " , почеши мне пузико или иди отсюда !";
        log.info("Replied to user: " + name);
